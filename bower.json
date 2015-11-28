@@ -1,0 +1,14 @@
+{
+  "name": "simonwallstrom",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "Simon Wallström"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/simonwallstrom/todolist",
+  "moduleType": [],
+  "dependencies": {
+    "vue": "~1.0.10"
+  }
+}
