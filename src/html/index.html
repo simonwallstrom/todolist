@@ -1,9 +1,24 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div class="wrap">
+    <div id="tasks" class="wrap">
 
-        <p>{{message}}</p>
+        <div>
+            <h1>Tasks ({{ tasks.length }})</h1>
+            <ol class="list-group">
+                <li v-for="task in tasks" class="task-group-item">
+                    <span v-on:dblclick="editTask(task)">{{ task.body }}</span>
+                    <a v-on:click="removeTask(task)" class="ion-ios-close-outline right"></a>
+                </li>
+            </ol>
+        </div>
+
+        <form v-on:submit="addTask">
+            <div class="form-group">
+                <input v-model="newTask" v-el:hej type="text"  placeholder="I need to..." />
+                <button>Add task</button>
+            </div>
+        </form>
 
     </div>
 {% endblock %}
