@@ -43,10 +43,15 @@ new Vue({
     },
 
     ready: function(){
-        this.$watch('tasks', function(value){
-            saveArray('tasks', value);
-            console.log('saved');
-        });
+        this.$watch(
+            'tasks',
+            function(value){
+                saveArray('tasks', value);
+            },
+            {
+                deep: true
+            }
+        );
     },
 
     methods: {
