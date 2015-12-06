@@ -2,11 +2,22 @@
 // Todo app
 //
 
+function fetchArray(key){
+    if(localStorage.getItem(key)){
+        return JSON.parse(localStorage.getItem(key));
+    }
+    return [];
+}
+
+function saveArray(key, value){
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
 new Vue({
     el: '#tasks',
 
     data: {
-        tasks: [],
+        tasks: fetchArray("tasks"),
         newTask: ''
     },
 
@@ -31,6 +42,13 @@ new Vue({
         }
     },
 
+    ready: function(){
+        this.$watch('tasks', function(value){
+            saveArray('tasks', value);
+            console.log('saved');
+        });
+    },
+
     methods: {
         addTask: function(e) {
             e.preventDefault();
@@ -43,8 +61,6 @@ new Vue({
             });
 
             this.newTask = '';
-
-            console.log(tasks);
         },
 
         editTask: function(task) {
