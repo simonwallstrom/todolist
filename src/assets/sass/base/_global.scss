@@ -36,3 +36,11 @@ ol {
     padding: 0;
     list-style-position: inside;
 }
+
+.sport:before,
+.economy:before,
+.work:before { font-family: "Ionicons"; }
+
+.sport:before   { content: "\f437"; }
+.economy:before { content: "\f119"; }
+.work:before    { content: "\f3ee"; }

@@ -18,7 +18,14 @@ new Vue({
 
     data: {
         tasks: fetchArray("tasks"),
-        newTask: ''
+        newTask: '',
+
+        newCategory: 'sport',
+        categories: [
+          { text: 'Sport', value: 'sport' },
+          { text: 'Economy', value: 'economy' },
+          { text: 'Work', value: 'work' }
+        ]
     },
 
     computed: {
@@ -62,7 +69,8 @@ new Vue({
 
             this.tasks.push({
                 body: this.newTask,
-                completed: false
+                category: this.newCategory,
+                completed: false,
             });
 
             this.newTask = '';
