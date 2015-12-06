@@ -91,7 +91,7 @@ gulp.task('html', function() {
             tags: {
                 variableStart: '<%',
                 variableEnd: '%>'
-              }
+            }
         }))
         .pipe(gulp.dest(dev.html))
         .pipe(browserSync.reload({stream:true}));

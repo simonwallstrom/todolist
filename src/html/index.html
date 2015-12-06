@@ -3,22 +3,36 @@
 {% block content %}
     <div id="tasks" class="wrap">
 
-        <div>
-            <h1>Tasks ({{ tasks.length }})</h1>
+        <div v-show="remaining.length">
+            <h1>Tasks ({{ remaining.length }})</h1>
             <ol class="list-group">
-                <li v-for="task in tasks" class="task-group-item">
+                <li v-for="task in tasks | inProcess" class="task-group-item">
                     <span v-on:dblclick="editTask(task)">{{ task.body }}</span>
                     <a v-on:click="removeTask(task)" class="ion-ios-close-outline right"></a>
+                    <a v-on:click="toggleTaskCompletion(task)" class="ion-ios-checkmark-outline right"></a>
                 </li>
             </ol>
         </div>
 
+
         <form v-on:submit="addTask">
             <div class="form-group">
-                <input v-model="newTask" v-el:hej type="text"  placeholder="I need to..." />
+                <input v-model="newTask" v-el:task type="text"  placeholder="I need to..." />
                 <button>Add task</button>
+                <button v-on:click="completeAll">Mark All As Completed</button>
             </div>
         </form>
+
+        <div v-if="completions.length">
+            <h2>Completed ({{ completions.length }})</h2>
+            <ol>
+                <li v-for="task in tasks | filterBy true in 'completed'">
+                    {{ task.body }}
+                    <a v-on:click="toggleTaskCompletion(task)" class="ion-ios-close-outline right"></a>
+                </li>
+            </ol>
+            <button v-on:click="clearCompleted()">Clear completed</button>
+        </div>
 
     </div>
 {% endblock %}
