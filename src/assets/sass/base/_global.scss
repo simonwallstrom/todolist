@@ -16,9 +16,10 @@
 
 body {
     line-height: $line-height;
-    color: $black;
+    color: $white;
     font-family: $sans;
     font-size: $font-size--small;
+    font-weight: 300;
 
     @include bp(md) {
         font-size: $font-size;

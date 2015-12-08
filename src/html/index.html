@@ -1,40 +1,40 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div id="tasks" class="wrap">
+    <div id="tasks" class="wrap todo-list">
 
         <div v-show="remaining.length">
             <h1>Tasks ({{ remaining.length }})</h1>
-            <ol class="list-group">
+            <ul class="list-group">
                 <li v-for="task in tasks | inProcess" class="{{ task.category }}">
                     <span v-on:dblclick="editTask(task)">{{ task.body }}</span>
-                    <a v-on:click="removeTask(task)" class="ion-ios-close-outline right"></a>
-                    <a v-on:click="toggleTaskCompletion(task)" class="ion-ios-checkmark-outline right"></a>
+                    <a v-on:click="removeTask(task)" class="ion-ios-close-outline right remove-task"></a>
+                    <a v-on:click="toggleTaskCompletion(task)" class="ion-ios-checkmark-outline right complete-task"></a>
                 </li>
-            </ol>
+            </ul>
         </div>
 
 
         <form v-on:submit="addTask">
             <div class="form-group">
-                <input v-model="newTask" v-el:task type="text"  placeholder="I need to..." />
                 <select v-model="newCategory">
                     <option v-for="category in categories" v-bind:value="category.value">{{ category.text }}</option>
                 </select>
-                <button>Add task</button>
-                <button v-on:click="completeAll">Mark All As Completed</button>
+                <input v-model="newTask" v-el:task type="text"  placehulder="I need to..." />
+                <button class="btn btn-primary mt1 mb1">Add task</button>
+               <!--  <button v-on:click="completeAll">Mark All As Completed</button> -->
             </div>
         </form>
 
         <div v-if="completions.length">
             <h2>Completed ({{ completions.length }})</h2>
-            <ol>
+            <ul>
                 <li v-for="task in tasks | filterBy true in 'completed'" class="{{ task.category }}">
                     {{ task.body }}
                     <a v-on:click="toggleTaskCompletion(task)" class="ion-ios-close-outline right"></a>
                 </li>
-            </ol>
-            <button v-on:click="clearCompleted()">Clear completed</button>
+            </ul>
+            <button class="secondary-btn" v-on:click="clearCompleted()">Clear completed</button>
         </div>
 
     </div>

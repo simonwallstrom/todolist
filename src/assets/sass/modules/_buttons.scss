@@ -6,3 +6,19 @@
 // -------------------------------------------------------------
 // # Buttons styles
 // -------------------------------------------------------------
+
+.btn-primary {
+    width: 100%;
+    background-color: $blue;
+    border: none;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+.secondary-btn {
+    float: right;
+    background-color: $blue;
+    border: none;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
